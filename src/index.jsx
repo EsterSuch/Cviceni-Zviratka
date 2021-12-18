@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import './style.css';
+import AnimalList from './components/AnimalList';
+import AnimalDetail from './components/AnimalDetail';
 
-const App = () => (
-  <div className="container">
-    <header>
-      <div className="logo"></div>
-      <h1>Webová aplikace</h1>
-    </header>
-    <main>
-      <p>Startovací šablona pro webovou aplikaci v Reactu. Vytvořeno pomocí <a href="https://www.npmjs.com/package/create-czechitas-app">create-czechitas-app</a>.</p>
-    </main>
-    <footer>
-      <p>Czechitas, Digitální akademie: Web</p>
-    </footer>
-  </div>
-);
+const App = () => {
+
+  const [animal, setAnimal] = useState([]);
+  const [vybraneZvire, setVybraneZvire] = useState();
+
+  useEffect(() => {
+    fetch("https://lrolecek.github.io/zviratka-api/zvirata.json")
+      .then(response => response.json())
+      .then(animal => setAnimal(animal.zvirata));
+  }, []);
+
+  const vybraneZvireId = (vybraneZvire) => {
+    setVybraneZvire(vybraneZvire);
+  };
+
+  return (
+    <div className="App">
+      <h1>Zvířátka v ZOO</h1>
+      <AnimalList animals={animal} prenesId={vybraneZvireId} />
+      <AnimalDetail animals={animal} idZvire={vybraneZvire} />
+    </div>
+  );
+}
+
 
 render(<App />, document.querySelector('#app'));
