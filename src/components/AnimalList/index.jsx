@@ -2,7 +2,7 @@ import React from 'react';
 import '../AnimalList/style.css';
 import Animal from './../Animal';
 
-const AnimalList = ({ animals, prenesId }) => {
+const AnimalList = ({ animal, prenesId }) => {
   const ulozeneId = (id) => {
     prenesId(id);
   };
@@ -10,19 +10,17 @@ const AnimalList = ({ animals, prenesId }) => {
   return (
     <>
       <div className="zvirata">
-
-        {animals.map(animal =>
+        {animal.map((animalInfo) => (
           <Animal
-            key={animal.id}
-            id={animal.id}
-            name={animal.nazev}
-            image={animal.foto}
-            latin={animal.nazevLatinsky}
+            key={animalInfo.id}
+            id={animalInfo.id}
+            name={animalInfo.nazev}
+            image={animalInfo.foto}
+            latin={animalInfo.nazevLatinsky}
             ulozId={ulozeneId}
           />
-        )}
-
-      </div >
+        ))}
+      </div>
     </>
   );
 };

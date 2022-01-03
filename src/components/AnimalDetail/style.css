@@ -1,7 +1,7 @@
 .detail {
   background-color: white;
   grid-column: 2 / 3;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 .detail__hlavicka {
@@ -52,7 +52,7 @@
 
 .detail__info {
   padding: 50px 30px 30px 30px;
-
+  background-color: white;
 }
 
 .detail__popis {

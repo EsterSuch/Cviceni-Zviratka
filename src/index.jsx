@@ -6,13 +6,13 @@ import AnimalDetail from './components/AnimalDetail';
 
 const App = () => {
 
-  const [animal, setAnimal] = useState([]);
+  const [animalList, setAnimalList] = useState([]);
   const [vybraneZvire, setVybraneZvire] = useState();
 
   useEffect(() => {
     fetch("https://lrolecek.github.io/zviratka-api/zvirata.json")
-      .then(response => response.json())
-      .then(animal => setAnimal(animal.zvirata));
+      .then((response) => response.json())
+      .then((animalList) => setAnimalList(animalList.zvirata));
   }, []);
 
   const vybraneZvireId = (vybraneZvire) => {
@@ -22,11 +22,20 @@ const App = () => {
   return (
     <div className="App">
       <h1>Zvířátka v ZOO</h1>
-      <AnimalList animals={animal} prenesId={vybraneZvireId} />
-      <AnimalDetail animals={animal} idZvire={vybraneZvire} />
+      <div className="container">
+        <AnimalList animal={animalList} prenesId={vybraneZvireId} />
+
+        {vybraneZvire ? (
+          <AnimalDetail animal={animalList} idZvire={vybraneZvire} />
+        ) : null}
+      </div>
     </div>
   );
+
 }
 
 
 render(<App />, document.querySelector('#app'));
+
+
+//i takto jde zapsat detail zvířete  {vybraneZvire && <AnimalDetail animals={animal} idZvire={vybraneZvire} />}
