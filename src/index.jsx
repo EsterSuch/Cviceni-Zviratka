@@ -25,17 +25,16 @@ const App = () => {
       <div className="container">
         <AnimalList animal={animalList} prenesId={vybraneZvireId} />
 
-        {vybraneZvire ? (
-          <AnimalDetail animal={animalList} idZvire={vybraneZvire} />
-        ) : null}
+        {vybraneZvire && <AnimalDetail animal={animalList} idZvire={vybraneZvire} />}
+
+
       </div>
     </div>
   );
 
 }
 
-
 render(<App />, document.querySelector('#app'));
 
 
-//i takto jde zapsat detail zvířete  {vybraneZvire && <AnimalDetail animals={animal} idZvire={vybraneZvire} />}
+// {vybraneZvire ? (<AnimalDetail animal={animalList} idZvire={vybraneZvire} />) : null}
