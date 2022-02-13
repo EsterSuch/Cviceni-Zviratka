@@ -1,8 +1,15 @@
 import React from 'react';
 import '../AnimalDetail/style.css';
 
+
 const AnimalDetail = ({ animal, idZvire }) => {
   const nalezeneZvire = animal.find((zvire) => zvire.id === idZvire);
+
+  if (!nalezeneZvire) {
+    return;
+  }
+
+  console.log(animal, idZvire, nalezeneZvire);
 
   return (
     <div className="detail">

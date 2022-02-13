@@ -9,11 +9,18 @@ const App = () => {
   const [animalList, setAnimalList] = useState([]);
   const [vybraneZvire, setVybraneZvire] = useState();
 
+
   useEffect(() => {
     fetch("https://lrolecek.github.io/zviratka-api/zvirata.json")
       .then((response) => response.json())
-      .then((animalList) => setAnimalList(animalList.zvirata));
+      .then((animalList) => {
+        setAnimalList(animalList.zvirata);
+        setVybraneZvire(0);
+      });
+
   }, []);
+
+  console.log(vybraneZvire);
 
   const vybraneZvireId = (vybraneZvire) => {
     setVybraneZvire(vybraneZvire);
@@ -25,8 +32,8 @@ const App = () => {
       <div className="container">
         <AnimalList animal={animalList} prenesId={vybraneZvireId} />
 
-        {vybraneZvire && <AnimalDetail animal={animalList} idZvire={vybraneZvire} />}
 
+        {vybraneZvire ? (<AnimalDetail animal={animalList} idZvire={vybraneZvire} />) : null}
 
       </div>
     </div>
@@ -36,5 +43,6 @@ const App = () => {
 
 render(<App />, document.querySelector('#app'));
 
-
+//<AnimalList animal={animalList} prenesId={vybraneZvireId} />
 // {vybraneZvire ? (<AnimalDetail animal={animalList} idZvire={vybraneZvire} />) : null}
+//{vybraneZvire && <AnimalDetail animal={animalList} idZvire={vybraneZvire} />}
