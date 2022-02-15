@@ -1,8 +1,9 @@
 import React from 'react';
 import '../AnimalDetail/style.css';
 
+const Zoo = ({ zoo }) => <p>{zoo.jmeno}</p>;
 
-const AnimalDetail = ({ animal, idZvire }) => {
+const AnimalDetail = ({ animal, idZvire, zooList }) => {
   const nalezeneZvire = animal.find((zvire) => zvire.id === idZvire);
 
   if (!nalezeneZvire) {
@@ -51,6 +52,11 @@ const AnimalDetail = ({ animal, idZvire }) => {
               </div>
               <div className="detail__udaj">
                 <h3>Zoo</h3>
+                <p>
+                  {nalezeneZvire.zoo.map((zooId) => (
+                    <Zoo zoo={zooList.find((zoo) => zoo.id === zooId)} />
+                  ))}
+                </p>
               </div>
             </div>
           </div>
